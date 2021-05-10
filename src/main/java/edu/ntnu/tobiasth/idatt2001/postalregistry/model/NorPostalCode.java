@@ -53,13 +53,13 @@ public class NorPostalCode implements PostalCode {
 
   /** {@inheritDoc} */
   @Override
-  public String getAsString() {
-    return String.valueOf(postalCode);
+  public String getCode() {
+    return String.format("%04d", postalCode);
   }
 
   /** {@inheritDoc} */
   @Override
-  public String getName() {
+  public String getLocationName() {
     return postalName;
   }
 

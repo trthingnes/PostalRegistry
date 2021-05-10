@@ -1,5 +1,6 @@
-package edu.ntnu.tobiasth.idatt2001.postalregistry;
+package edu.ntnu.tobiasth.idatt2001.postalregistry.util;
 
+import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
 import java.util.List;
 
 /**

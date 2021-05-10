@@ -1,6 +1,9 @@
-package edu.ntnu.tobiasth.idatt2001.postalregistry;
+package edu.ntnu.tobiasth.idatt2001.postalregistry.util;
 
-import java.net.URI;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.AppLogger;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.model.NorPostalCode;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -8,17 +11,17 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class NorFileReader implements FileReader {
-  private final URI fileUri;
+  private final URL fileUrl;
 
-  public NorFileReader(URI fileUri) {
-    this.fileUri = fileUri;
+  public NorFileReader(URL fileUrl) {
+    this.fileUrl = fileUrl;
   }
 
   @Override
   public List<PostalCode> readFile() {
     List<PostalCode> list = new ArrayList<>();
 
-    try (var reader = Files.newBufferedReader(Paths.get(fileUri))) {
+    try (var reader = Files.newBufferedReader(Paths.get(fileUrl.toURI()))) {
       var skipped = new AtomicInteger();
 
       reader
@@ -34,8 +37,9 @@ public class NorFileReader implements FileReader {
                 }
               });
 
-      if(skipped.get() > 0) {
-        var warning = String.format("Skipped %s postal codes while importing from file.%n", skipped);
+      if (skipped.get() > 0) {
+        var warning =
+            String.format("Skipped %s postal codes while importing from file.%n", skipped);
         AppLogger.get().warning(warning);
       }
     } catch (Exception e) {

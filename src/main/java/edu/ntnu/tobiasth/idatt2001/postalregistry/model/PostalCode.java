@@ -13,14 +13,14 @@ public interface PostalCode {
    *
    * @return Postal code as string.
    */
-  String getAsString();
+  String getCode();
 
   /**
    * Gets the postal code location name.
    *
    * @return Location name.
    */
-  String getName();
+  String getLocationName();
 
   /**
    * Gets the postal code province code.

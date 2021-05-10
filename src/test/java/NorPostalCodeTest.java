@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import edu.ntnu.tobiasth.idatt2001.postalregistry.NorPostalCode;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.model.NorPostalCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -47,7 +47,7 @@ class NorPostalCodeTest {
     NorPostalCode code =
         new NorPostalCode(postalCode, postalName, provinceCode, provinceName, type);
 
-    assertEquals(postalCode, code.getAsString());
+    assertEquals(postalCode, code.getCode());
   }
 
   @Test
@@ -56,7 +56,7 @@ class NorPostalCodeTest {
     NorPostalCode code =
         new NorPostalCode(postalCode, postalName, provinceCode, provinceName, type);
 
-    assertEquals(postalName, code.getName());
+    assertEquals(postalName, code.getLocationName());
   }
 
   @Test
