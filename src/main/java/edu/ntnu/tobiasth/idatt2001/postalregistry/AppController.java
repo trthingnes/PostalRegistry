@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -20,10 +21,9 @@ import javafx.scene.control.TextField;
  * @author trthingnes
  */
 public class AppController {
-  @FXML private TableView<PostalCode> table;
-  @FXML private TextField searchbar;
-
-  private FilteredList<PostalCode> tableList;
+  @FXML private TableView<PostalCode> listTable;
+  @FXML private TextField searchField;
+  @FXML private Button clearButton;
 
   /** Initializes the GUI. */
   @FXML
@@ -41,19 +41,22 @@ public class AppController {
     for (String[] columnName : columnNames) {
       columns.add(TableColumnFactory.getTableColumn(columnName[0], columnName[1]));
     }
-    table.getColumns().addAll(columns);
+    listTable.getColumns().addAll(columns);
 
     // Add table content.
     FileReader reader = new NorFileReader(App.class.getResource("/nor_postal_numbers.dat"));
-    tableList = new FilteredList<>(FXCollections.observableList(reader.readFile()));
-    table.setItems(tableList);
+    FilteredList<PostalCode> list =
+        new FilteredList<>(FXCollections.observableList(reader.readFile()));
+    listTable.setItems(list);
 
     // Set search listener.
-    searchbar
+    searchField
         .textProperty()
         .addListener(
-            ((observable, oldValue, newValue) ->
-                tableList.setPredicate(createPredicate(newValue))));
+            ((observable, oldValue, newValue) -> list.setPredicate(createPredicate(newValue))));
+
+    // Set clear listener.
+    clearButton.setOnMouseClicked(event -> searchField.setText(""));
   }
 
   /**
