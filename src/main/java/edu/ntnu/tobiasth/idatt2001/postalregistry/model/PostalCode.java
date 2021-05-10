@@ -1,3 +1,5 @@
+package edu.ntnu.tobiasth.idatt2001.postalregistry.model;
+
 /**
  * Interface for postal codes.
  *

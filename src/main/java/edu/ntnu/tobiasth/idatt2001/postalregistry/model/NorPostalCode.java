@@ -1,3 +1,5 @@
+package edu.ntnu.tobiasth.idatt2001.postalregistry.model;
+
 import java.util.Arrays;
 
 /**
