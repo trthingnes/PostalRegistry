@@ -33,12 +33,6 @@ public interface PostalCode {
     String getProvinceName();
 
     /**
-     * Gets the postal code country code.
-     * @return Country code.
-     */
-    String getCountryCode();
-
-    /**
      * Gets a print friendly postal code country name.
      * @return Country name.
      */

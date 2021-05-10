@@ -10,6 +10,7 @@ import java.util.Arrays;
  * @author trthingnes
  */
 public class NorPostalCode implements PostalCode {
+    private static final String COUNTRY_NAME = "Norway";
     private final int postalCode;
     private final String postalName;
     private final int provinceCode;
@@ -82,24 +83,24 @@ public class NorPostalCode implements PostalCode {
      * {@inheritDoc}
      */
     @Override
+    public String getCountryName() {
+        return COUNTRY_NAME;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String getTypeDescription() {
         return type.description;
     }
 
     /**
-     * {@inheritDoc}
+     * Gets the postal code type.
+     * @return Postal code type.
      */
-    @Override
-    public String getCountryCode() {
-        return "nor";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCountryName() {
-        return "Norway";
+    public Type getType() {
+        return type;
     }
 
     /**
@@ -124,6 +125,14 @@ public class NorPostalCode implements PostalCode {
     }
 
     /**
+     * Returns a readable string version of the postal code.
+     */
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %s, %s", postalCode, postalName, provinceName, COUNTRY_NAME);
+    }
+
+    /**
      * Postal code types. Shows what the postal codes are used for.
      */
     public enum Type {
@@ -140,6 +149,14 @@ public class NorPostalCode implements PostalCode {
         Type(char code, String description) {
             this.code = code;
             this.description = description;
+        }
+
+        public char getCode() {
+            return code;
+        }
+
+        public String getDescription() {
+            return description;
         }
     }
 }
