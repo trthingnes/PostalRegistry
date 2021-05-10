@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class AppLogger {
   private static Logger logger;
 
-  /** Unused constructor */
+  /** Unused constructor. */
   private AppLogger() {}
 
   /**

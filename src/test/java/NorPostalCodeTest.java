@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import edu.ntnu.tobiasth.idatt2001.postalregistry.model.NorPostalCode;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.NorPostalCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
