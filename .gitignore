@@ -21,3 +21,4 @@ buildNumber.properties
 *.rar
 hs_err_pid*
 .idea
+*.iml

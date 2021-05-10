@@ -1,7 +1,7 @@
 package edu.ntnu.tobiasth.idatt2001.postalregistry;
 
-import edu.ntnu.tobiasth.idatt2001.postalregistry.factory.FxmlLoaderFactory;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -13,7 +13,9 @@ import javafx.stage.Stage;
 public class App extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
-    var scene = new Scene(FxmlLoaderFactory.getFxmlLoader("app").load());
+    var loader = new FXMLLoader(getClass().getResource("/app.fxml"));
+    var scene = new Scene(loader.load());
+
     primaryStage.setScene(scene);
     primaryStage.setTitle("Postal Code Register");
     primaryStage.setMinWidth(1200);
