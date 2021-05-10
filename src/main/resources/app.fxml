@@ -12,6 +12,6 @@
          </columnResizePolicy></TableView>
    </center>
    <top>
-      <TextField fx:id="searchbar" onKeyTyped="#filter" promptText="Type a search here" BorderPane.alignment="CENTER" />
+      <TextField fx:id="searchbar" promptText="Type a search here" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>

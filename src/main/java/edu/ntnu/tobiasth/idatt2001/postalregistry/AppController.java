@@ -14,12 +14,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+/**
+ * Main controller for the JavaFX application.
+ *
+ * @author trthingnes
+ */
 public class AppController {
   @FXML private TableView<PostalCode> table;
   @FXML private TextField searchbar;
 
   private FilteredList<PostalCode> tableList;
 
+  /** Initializes the GUI. */
   @FXML
   void initialize() {
     // Add table columns.
@@ -41,16 +47,24 @@ public class AppController {
     FileReader reader = new NorFileReader(App.class.getResource("/nor_postal_numbers.dat"));
     tableList = new FilteredList<>(FXCollections.observableList(reader.readFile()));
     table.setItems(tableList);
+
+    // Set search listener.
+    searchbar
+        .textProperty()
+        .addListener(
+            ((observable, oldValue, newValue) ->
+                tableList.setPredicate(createPredicate(newValue))));
   }
 
-  @FXML
-  void filter() {
-    String query = searchbar.getText().toLowerCase();
-
-    Predicate<PostalCode> predicate =
-        code ->
-            code.getCode().contains(query) || code.getLocationName().toLowerCase().contains(query);
-
-    tableList.setPredicate(predicate);
+  /**
+   * Creates a predicate for use with the table filtered list.
+   *
+   * @param query Search query to match with table entry.
+   * @return Predicate.
+   */
+  private Predicate<PostalCode> createPredicate(String query) {
+    return code ->
+        code.getCode().contains(query)
+            || code.getLocationName().toLowerCase().contains(query.toLowerCase());
   }
 }
