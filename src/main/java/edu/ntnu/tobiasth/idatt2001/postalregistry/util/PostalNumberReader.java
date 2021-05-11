@@ -1,8 +1,8 @@
 package edu.ntnu.tobiasth.idatt2001.postalregistry.util;
 
 import edu.ntnu.tobiasth.idatt2001.postalregistry.AppLogger;
-import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalNumber;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalNumber;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;

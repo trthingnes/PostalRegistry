@@ -1,10 +1,9 @@
 package edu.ntnu.tobiasth.idatt2001.postalregistry;
 
-import edu.ntnu.tobiasth.idatt2001.postalregistry.factory.TableColumnFactory;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.util.FileReader;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.util.PostalNumberReader;
-import java.util.ArrayList;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.util.TableColumnBuilder;
 import java.util.List;
 import java.util.function.Predicate;
 import javafx.collections.FXCollections;
@@ -28,20 +27,48 @@ public class AppController {
   /** Initializes the GUI. */
   @FXML
   void initialize() {
-    // Add table columns.
-    List<TableColumn<PostalCode, String>> columns = new ArrayList<>();
-    var columnNames =
-        new String[][] {
-          {"Postal Code", "Code"},
-          {"Postal Location", "LocationName"},
-          {"Province Code", "ProvinceCode"},
-          {"Province Name", "ProvinceName"},
-          {"Type", "TypeDescription"}
-        };
-    for (String[] columnName : columnNames) {
-      columns.add(TableColumnFactory.getTableColumn(columnName[0], columnName[1]));
-    }
-    listTable.getColumns().addAll(columns);
+    // Postal Code Column
+    TableColumn<PostalCode, String> codeCol =
+        new TableColumnBuilder<PostalCode, String>()
+            .setText("Code")
+            .setCellPropertyValue("Code")
+            .build();
+    TableColumn<PostalCode, String> locationCol =
+        new TableColumnBuilder<PostalCode, String>()
+            .setText("Location")
+            .setCellPropertyValue("LocationName")
+            .build();
+    TableColumn<PostalCode, String> typeCol =
+        new TableColumnBuilder<PostalCode, String>()
+            .setText("Type")
+            .setFitContentProperty()
+            .setCellPropertyValue("TypeDescription")
+            .build();
+    TableColumn<PostalCode, String> postalCodeCol =
+        new TableColumnBuilder<PostalCode, String>()
+            .setText("Postal Code")
+            .addNestedColumns(List.of(codeCol, locationCol, typeCol))
+            .build();
+
+    // Province Column
+    TableColumn<PostalCode, String> provinceNumberCol =
+        new TableColumnBuilder<PostalCode, String>()
+            .setText("Number")
+            .setCellPropertyValue("ProvinceCode")
+            .build();
+    TableColumn<PostalCode, String> provinceNameCol =
+        new TableColumnBuilder<PostalCode, String>()
+            .setText("Location")
+            .setCellPropertyValue("ProvinceName")
+            .build();
+    TableColumn<PostalCode, String> provinceCol =
+        new TableColumnBuilder<PostalCode, String>()
+            .setText("Province")
+            .addNestedColumns(List.of(provinceNameCol, provinceNumberCol))
+            .build();
+
+    // Add columns to table.
+    listTable.getColumns().addAll(List.of(postalCodeCol, provinceCol));
 
     // Add table content.
     FileReader reader = new PostalNumberReader(App.class.getResource("/nor_postal_numbers.dat"));

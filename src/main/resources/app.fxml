@@ -12,18 +12,18 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.tobiasth.idatt2001.postalregistry.AppController">
    <center>
-      <TableView fx:id="listTable" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy></TableView>
+      <TableView fx:id="listTable" tableMenuButtonVisible="true" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <StackPane prefHeight="30.0" BorderPane.alignment="CENTER">
+      <StackPane BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="searchField" alignment="CENTER" promptText="Type a search here">
+            <TextField fx:id="searchField" prefHeight="40.0" promptText="Type a search here">
                <font>
                   <Font size="18.0" />
                </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
             </TextField>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
                <image>
