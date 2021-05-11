@@ -20,15 +20,14 @@ public class PostalNumberReader implements FileReader {
 
   /**
    * Constructs a new reader.
+   *
    * @param fileUrl File URL to read.
    */
   public PostalNumberReader(URL fileUrl) {
     this.fileUrl = fileUrl;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public List<PostalCode> readFile() {
     List<PostalCode> list = new ArrayList<>();

@@ -6,9 +6,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * Builder for {@link TableColumn} objects.
+ *
  * @param <S> Table content type.
  * @param <T> Cell content type.
- *
  * @author trthingnes
  */
 public class TableColumnBuilder<S, T> {
@@ -16,6 +16,7 @@ public class TableColumnBuilder<S, T> {
 
   /**
    * Sets the header text of the table column.
+   *
    * @param text Header text.
    * @return Builder object.
    */
@@ -26,6 +27,7 @@ public class TableColumnBuilder<S, T> {
 
   /**
    * Sets the cell value factory to on with the given property name.
+   *
    * @param property Property name.
    * @return Builder object.
    */
@@ -36,6 +38,7 @@ public class TableColumnBuilder<S, T> {
 
   /**
    * Sets the min width of the column to the preferred width of the content.
+   *
    * @return Builder object.
    */
   public TableColumnBuilder<S, T> setFitContentProperty() {
@@ -45,6 +48,7 @@ public class TableColumnBuilder<S, T> {
 
   /**
    * Adds nested columns to the column.
+   *
    * @param columns Nested columns to add.
    * @return Builder object.
    */
@@ -55,6 +59,7 @@ public class TableColumnBuilder<S, T> {
 
   /**
    * Returns the built {@link TableColumn} object.
+   *
    * @return Table column object.
    */
   public TableColumn<S, T> build() {
