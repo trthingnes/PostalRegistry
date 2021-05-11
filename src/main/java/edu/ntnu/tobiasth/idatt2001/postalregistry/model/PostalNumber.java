@@ -117,10 +117,10 @@ public class PostalNumber implements PostalCode {
 
   /** Postal code types. Shows what the postal codes are used for. */
   public enum Type {
-    BOTH('B', "Used for both street addresses and P.O. boxes."),
-    MIX('F', "Used for a mix of services."),
-    STREET('G', "Used for street addresses."),
-    BOX('P', "Used for P.O. boxes."),
+    BOTH('B', "Addresses and boxes"),
+    MIX('F', "Mix of services"),
+    STREET('G', "Street addresses"),
+    BOX('P', "P.O. boxes"),
     SERVICE('S', "Unused"),
     UNKNOWN('*', "Unknown");
 

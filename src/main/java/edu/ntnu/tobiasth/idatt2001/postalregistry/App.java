@@ -28,6 +28,8 @@ public class App extends Application {
 
     primaryStage.setScene(scene);
     primaryStage.setTitle("Postal Code Register");
+    primaryStage.setMinHeight(200);
+    primaryStage.setMinWidth(500);
     primaryStage.centerOnScreen();
     primaryStage.show();
   }
