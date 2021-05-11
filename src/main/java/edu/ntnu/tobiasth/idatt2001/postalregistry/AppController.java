@@ -1,8 +1,8 @@
 package edu.ntnu.tobiasth.idatt2001.postalregistry;
 
 import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
-import edu.ntnu.tobiasth.idatt2001.postalregistry.util.FileReader;
-import edu.ntnu.tobiasth.idatt2001.postalregistry.util.PostalNumberReader;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.io.FileReader;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.io.PostalNumberReader;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.util.TableColumnBuilder;
 import java.util.List;
 import java.util.function.Predicate;
