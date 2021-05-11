@@ -3,7 +3,7 @@ package edu.ntnu.tobiasth.idatt2001.postalregistry;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.factory.TableColumnFactory;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.util.FileReader;
-import edu.ntnu.tobiasth.idatt2001.postalregistry.util.NorFileReader;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.util.PostalNumberReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -44,7 +44,7 @@ public class AppController {
     listTable.getColumns().addAll(columns);
 
     // Add table content.
-    FileReader reader = new NorFileReader(App.class.getResource("/nor_postal_numbers.dat"));
+    FileReader reader = new PostalNumberReader(App.class.getResource("/nor_postal_numbers.dat"));
     FilteredList<PostalCode> list =
         new FilteredList<>(FXCollections.observableList(reader.readFile()));
     listTable.setItems(list);

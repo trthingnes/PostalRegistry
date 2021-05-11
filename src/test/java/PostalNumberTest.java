@@ -2,11 +2,14 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import edu.ntnu.tobiasth.idatt2001.postalregistry.model.NorPostalCode;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class NorPostalCodeTest {
+import java.util.Arrays;
+
+@DisplayName("Norwegian Postal Number Tests")
+class PostalNumberTest {
   private final String postalCode = "7034";
   private final String postalName = "Trondheim";
   private final String provinceCode = "7001";
@@ -21,7 +24,7 @@ class NorPostalCodeTest {
   void testPostalCodeIsConstructedSuccessfully() {
     assertDoesNotThrow(
         () -> {
-          new NorPostalCode(postalCode, postalName, provinceCode, provinceName, type);
+          new PostalNumber(postalCode, postalName, provinceCode, provinceName, type);
         });
   }
 
@@ -30,7 +33,7 @@ class NorPostalCodeTest {
   void testInvalidNameThrowsException() {
     assertThrows(
         IllegalArgumentException.class,
-        () -> new NorPostalCode(postalCode, illegalPostalName, provinceCode, provinceName, type));
+        () -> new PostalNumber(postalCode, illegalPostalName, provinceCode, provinceName, type));
   }
 
   @Test
@@ -38,14 +41,14 @@ class NorPostalCodeTest {
   void testInvalidPostalCodeThrowsException() {
     assertThrows(
         IllegalArgumentException.class,
-        () -> new NorPostalCode(illegalPostalCode, postalName, provinceCode, provinceName, type));
+        () -> new PostalNumber(illegalPostalCode, postalName, provinceCode, provinceName, type));
   }
 
   @Test
   @DisplayName("Postal code is correct after construction")
   void testPostalCodeCorrectAfterConstruction() {
-    NorPostalCode code =
-        new NorPostalCode(postalCode, postalName, provinceCode, provinceName, type);
+    PostalNumber code =
+        new PostalNumber(postalCode, postalName, provinceCode, provinceName, type);
 
     assertEquals(postalCode, code.getCode());
   }
@@ -53,8 +56,8 @@ class NorPostalCodeTest {
   @Test
   @DisplayName("Postal name is correct after construction")
   void testPostalNameCorrectAfterConstruction() {
-    NorPostalCode code =
-        new NorPostalCode(postalCode, postalName, provinceCode, provinceName, type);
+    PostalNumber code =
+        new PostalNumber(postalCode, postalName, provinceCode, provinceName, type);
 
     assertEquals(postalName, code.getLocationName());
   }
@@ -62,8 +65,8 @@ class NorPostalCodeTest {
   @Test
   @DisplayName("Province code is correct after construction")
   void testProvinceCodeCorrectAfterConstruction() {
-    NorPostalCode code =
-        new NorPostalCode(postalCode, postalName, provinceCode, provinceName, type);
+    PostalNumber code =
+        new PostalNumber(postalCode, postalName, provinceCode, provinceName, type);
 
     assertEquals(provinceCode, code.getProvinceCode());
   }
@@ -71,8 +74,8 @@ class NorPostalCodeTest {
   @Test
   @DisplayName("Province name is correct after construction")
   void testProvinceNameCorrectAfterConstruction() {
-    NorPostalCode code =
-        new NorPostalCode(postalCode, postalName, provinceCode, provinceName, type);
+    PostalNumber code =
+        new PostalNumber(postalCode, postalName, provinceCode, provinceName, type);
 
     assertEquals(provinceName, code.getProvinceName());
   }
@@ -80,17 +83,21 @@ class NorPostalCodeTest {
   @Test
   @DisplayName("Postal code type is correct after construction")
   void testCodeTypeCorrectAfterConstruction() {
-    NorPostalCode code =
-        new NorPostalCode(postalCode, postalName, provinceCode, provinceName, type);
+    PostalNumber code =
+        new PostalNumber(postalCode, postalName, provinceCode, provinceName, type);
+    PostalNumber.Type expectedType = Arrays.stream(PostalNumber.Type.values())
+            .filter(t -> t.getCode() == type.charAt(0))
+            .findAny()
+            .orElse(PostalNumber.Type.UNKNOWN);
 
-    assertEquals(type, String.valueOf(code.getType().getCode()));
+    assertEquals(expectedType.getDescription(), String.valueOf(code.getTypeDescription()));
   }
 
   @Test
   @DisplayName("Postal codes with equal postal numbers are considered equal")
   void testPostalCodesAreEqualWithSamePostalNumber() {
-    NorPostalCode a = new NorPostalCode(postalCode, postalName, provinceCode, provinceName, type);
-    NorPostalCode b = new NorPostalCode(postalCode, postalName, provinceCode, provinceName, type);
+    PostalNumber a = new PostalNumber(postalCode, postalName, provinceCode, provinceName, type);
+    PostalNumber b = new PostalNumber(postalCode, postalName, provinceCode, provinceName, type);
 
     assertEquals(a, b);
   }

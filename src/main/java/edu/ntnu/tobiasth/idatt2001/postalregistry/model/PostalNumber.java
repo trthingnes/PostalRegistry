@@ -9,8 +9,9 @@ import java.util.Arrays;
  *
  * @author trthingnes
  */
-public class NorPostalCode implements PostalCode {
+public class PostalNumber implements PostalCode {
   private static final String COUNTRY_NAME = "Norway";
+
   private final int postalCode;
   private final String postalName;
   private final int provinceCode;
@@ -27,7 +28,7 @@ public class NorPostalCode implements PostalCode {
    * @param type Postal code type char code.
    * @throws IllegalArgumentException If names are empty or codes are not integers.
    */
-  public NorPostalCode(
+  public PostalNumber(
       String postalCode, String postalName, String provinceCode, String provinceName, String type)
       throws IllegalArgumentException {
     if (postalName.isBlank() || provinceName.isBlank()) {
@@ -87,15 +88,6 @@ public class NorPostalCode implements PostalCode {
     return type.description;
   }
 
-  /**
-   * Gets the postal code type.
-   *
-   * @return Postal code type.
-   */
-  public Type getType() {
-    return type;
-  }
-
   /** {@inheritDoc} */
   @Override
   public boolean equals(Object other) {
@@ -106,7 +98,7 @@ public class NorPostalCode implements PostalCode {
       return false;
     }
 
-    NorPostalCode that = (NorPostalCode) other;
+    PostalNumber that = (PostalNumber) other;
 
     return postalCode == that.postalCode;
   }

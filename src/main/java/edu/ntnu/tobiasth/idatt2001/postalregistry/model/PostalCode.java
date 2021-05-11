@@ -9,7 +9,7 @@ package edu.ntnu.tobiasth.idatt2001.postalregistry.model;
  */
 public interface PostalCode {
   /**
-   * Gets the postal code as a separate string.
+   * Gets the postal code as a string.
    *
    * @return Postal code as string.
    */
@@ -44,7 +44,7 @@ public interface PostalCode {
   String getCountryName();
 
   /**
-   * Gets the postal code type describing code use areas.
+   * Gets a string describing what the postal code is used for.
    *
    * @return Type description.
    */

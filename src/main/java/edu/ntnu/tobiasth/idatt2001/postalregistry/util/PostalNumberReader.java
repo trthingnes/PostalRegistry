@@ -1,7 +1,7 @@
 package edu.ntnu.tobiasth.idatt2001.postalregistry.util;
 
 import edu.ntnu.tobiasth.idatt2001.postalregistry.AppLogger;
-import edu.ntnu.tobiasth.idatt2001.postalregistry.model.NorPostalCode;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalNumber;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
 import java.net.URL;
 import java.nio.file.Files;
@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class NorFileReader implements FileReader {
+public class PostalNumberReader implements FileReader {
   private final URL fileUrl;
 
-  public NorFileReader(URL fileUrl) {
+  public PostalNumberReader(URL fileUrl) {
     this.fileUrl = fileUrl;
   }
 
@@ -30,7 +30,7 @@ public class NorFileReader implements FileReader {
               line -> {
                 try {
                   String[] data = line.split("\t");
-                  var code = new NorPostalCode(data[0], data[1], data[2], data[3], data[4]);
+                  var code = new PostalNumber(data[0], data[1], data[2], data[3], data[4]);
                   list.add(code);
                 } catch (IllegalArgumentException e) {
                   skipped.getAndIncrement();
