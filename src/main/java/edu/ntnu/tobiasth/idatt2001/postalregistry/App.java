@@ -14,6 +14,9 @@ import javafx.stage.Stage;
  * @author trthingnes
  */
 public class App extends Application {
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void start(Stage primaryStage) throws Exception {
     var loader = new FXMLLoader(App.class.getResource("/app.fxml"));

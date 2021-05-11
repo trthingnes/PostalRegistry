@@ -10,13 +10,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * File reader for Norwegian postal numbers.
+ *
+ * @author trthingnes
+ */
 public class PostalNumberReader implements FileReader {
   private final URL fileUrl;
 
+  /**
+   * Constructs a new reader.
+   * @param fileUrl File URL to read.
+   */
   public PostalNumberReader(URL fileUrl) {
     this.fileUrl = fileUrl;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public List<PostalCode> readFile() {
     List<PostalCode> list = new ArrayList<>();
