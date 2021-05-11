@@ -1,8 +1,8 @@
 package edu.ntnu.tobiasth.idatt2001.postalregistry;
 
-import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.io.FileReader;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.io.PostalNumberReader;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.util.TableColumnBuilder;
 import java.util.List;
 import java.util.function.Predicate;
@@ -35,13 +35,13 @@ public class AppController {
             .build();
     TableColumn<PostalCode, String> codeCol = createChildColumn("Code", "Code");
     TableColumn<PostalCode, String> locationCol = createChildColumn("Location", "LocationName");
-    TableColumn<PostalCode, String> pNumberCol = createChildColumn("Number", "ProvinceCode");
-    TableColumn<PostalCode, String> pNameCol = createChildColumn("Name", "ProvinceName");
+    TableColumn<PostalCode, String> provinceNumberCol = createChildColumn("Number", "ProvinceCode");
+    TableColumn<PostalCode, String> provinceNameCol = createChildColumn("Name", "ProvinceName");
 
     TableColumn<PostalCode, String> postalCodeCol =
         createParentColumn("Postal Code", List.of(codeCol, locationCol, typeCol));
     TableColumn<PostalCode, String> provinceCol =
-        createParentColumn("Province", List.of(pNumberCol, pNameCol));
+        createParentColumn("Province", List.of(provinceNumberCol, provinceNameCol));
 
     listTable.getColumns().addAll(List.of(postalCodeCol, provinceCol));
 
