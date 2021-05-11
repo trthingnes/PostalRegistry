@@ -27,51 +27,27 @@ public class AppController {
   /** Initializes the GUI. */
   @FXML
   void initialize() {
-    // Postal Code Column
-    TableColumn<PostalCode, String> codeCol =
-        new TableColumnBuilder<PostalCode, String>()
-            .setText("Code")
-            .setCellPropertyValue("Code")
-            .build();
-    TableColumn<PostalCode, String> locationCol =
-        new TableColumnBuilder<PostalCode, String>()
-            .setText("Location")
-            .setCellPropertyValue("LocationName")
-            .build();
     TableColumn<PostalCode, String> typeCol =
         new TableColumnBuilder<PostalCode, String>()
             .setText("Type")
-            .setFitContentProperty()
             .setCellPropertyValue("TypeDescription")
+            .setFitContentProperty()
             .build();
+    TableColumn<PostalCode, String> codeCol = createChildColumn("Code", "Code");
+    TableColumn<PostalCode, String> locationCol = createChildColumn("Location", "LocationName");
+    TableColumn<PostalCode, String> pNumberCol = createChildColumn("Number", "ProvinceCode");
+    TableColumn<PostalCode, String> pNameCol = createChildColumn("Name", "ProvinceName");
+
     TableColumn<PostalCode, String> postalCodeCol =
-        new TableColumnBuilder<PostalCode, String>()
-            .setText("Postal Code")
-            .addNestedColumns(List.of(codeCol, locationCol, typeCol))
-            .build();
-
-    // Province Column
-    TableColumn<PostalCode, String> provinceNumberCol =
-        new TableColumnBuilder<PostalCode, String>()
-            .setText("Number")
-            .setCellPropertyValue("ProvinceCode")
-            .build();
-    TableColumn<PostalCode, String> provinceNameCol =
-        new TableColumnBuilder<PostalCode, String>()
-            .setText("Location")
-            .setCellPropertyValue("ProvinceName")
-            .build();
+        createParentColumn("Postal Code", List.of(codeCol, locationCol, typeCol));
     TableColumn<PostalCode, String> provinceCol =
-        new TableColumnBuilder<PostalCode, String>()
-            .setText("Province")
-            .addNestedColumns(List.of(provinceNameCol, provinceNumberCol))
-            .build();
+        createParentColumn("Province", List.of(pNumberCol, pNameCol));
 
-    // Add columns to table.
     listTable.getColumns().addAll(List.of(postalCodeCol, provinceCol));
 
     // Add table content.
-    FileReader reader = new PostalNumberReader(App.class.getResource("/nor_postal_numbers.dat"));
+    FileReader reader =
+        new PostalNumberReader(App.class.getResource("/data/nor_postal_numbers.dat"));
     FilteredList<PostalCode> list =
         new FilteredList<>(FXCollections.observableList(reader.readFile()));
     listTable.setItems(list);
@@ -84,6 +60,35 @@ public class AppController {
 
     // Set clear listener.
     clearButton.setOnMouseClicked(event -> searchField.setText(""));
+  }
+
+  /**
+   * Creates a basic table column using the builder.
+   *
+   * @param text Header text.
+   * @param property Property to link column to.
+   * @return Table column.
+   */
+  private TableColumn<PostalCode, String> createChildColumn(String text, String property) {
+    return new TableColumnBuilder<PostalCode, String>()
+        .setText(text)
+        .setCellPropertyValue(property)
+        .build();
+  }
+
+  /**
+   * Creates a parent table column using the builder.
+   *
+   * @param text Header text.
+   * @param children Child columns to fill parent column with.
+   * @return Table column.
+   */
+  private TableColumn<PostalCode, String> createParentColumn(
+      String text, List<TableColumn<PostalCode, String>> children) {
+    return new TableColumnBuilder<PostalCode, String>()
+        .setText(text)
+        .addNestedColumns(children)
+        .build();
   }
 
   /**

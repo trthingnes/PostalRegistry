@@ -20,7 +20,7 @@ public class App extends Application {
     var scene = new Scene(loader.load());
 
     try {
-      InputStream imageStream = App.class.getResourceAsStream("/logo.png");
+      InputStream imageStream = App.class.getResourceAsStream("/img/logo.png");
       primaryStage.getIcons().add(new Image(Objects.requireNonNull(imageStream)));
     } catch (NullPointerException ignored) {
       /* No icon is added if load fails */
@@ -29,6 +29,7 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.setTitle("Postal Code Register");
     primaryStage.setMinHeight(200);
+    primaryStage.setHeight(800);
     primaryStage.setMinWidth(500);
     primaryStage.centerOnScreen();
     primaryStage.show();
