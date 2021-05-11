@@ -43,14 +43,13 @@ public class PostalNumberReader implements FileReader {
                   String[] data = line.split("\t");
                   var code = new PostalNumber(data[0], data[1], data[2], data[3], data[4]);
                   list.add(code);
-                } catch (IllegalArgumentException e) {
+                } catch (Exception e) {
                   skipped.getAndIncrement();
                 }
               });
 
       if (skipped.get() > 0) {
-        var warning =
-            String.format("Skipped %s postal codes while importing from file.%n", skipped);
+        var warning = String.format("Skipped %s lines while importing from file.%n", skipped);
         AppLogger.get().warning(warning);
       }
     } catch (Exception e) {
