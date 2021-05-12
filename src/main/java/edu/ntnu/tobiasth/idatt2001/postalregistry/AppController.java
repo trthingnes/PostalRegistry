@@ -4,16 +4,21 @@ import edu.ntnu.tobiasth.idatt2001.postalregistry.io.FileReader;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.io.PostalNumberReader;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.util.TableColumnBuilder;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * Main controller for the JavaFX application.
@@ -24,6 +29,7 @@ public class AppController {
   @FXML private TableView<PostalCode> listTable;
   @FXML private TextField searchField;
   @FXML private Button clearButton;
+  @FXML private Button helpButton;
 
   /** Initializes the GUI. */
   @FXML
@@ -61,6 +67,22 @@ public class AppController {
 
     // Set clear listener.
     clearButton.setOnMouseClicked(event -> searchField.setText(""));
+
+    // Set help listener.
+    helpButton.setOnMouseClicked(
+        event -> {
+          try {
+            var stage = new Stage();
+            var loader = new FXMLLoader(App.class.getResource("/help.fxml"));
+            stage.setTitle("Help");
+            stage.setScene(new Scene(loader.load()));
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+          } catch (IOException e) {
+            AppLogger.get().warning("Unable to load help window stage.");
+          }
+        });
 
     // Set double click listener.
     listTable.setOnMouseClicked(
