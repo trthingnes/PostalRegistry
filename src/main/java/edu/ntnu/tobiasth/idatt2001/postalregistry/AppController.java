@@ -5,6 +5,7 @@ import edu.ntnu.tobiasth.idatt2001.postalregistry.io.PostalNumberReader;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.util.TableColumnBuilder;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
@@ -60,6 +61,16 @@ public class AppController {
 
     // Set clear listener.
     clearButton.setOnMouseClicked(event -> searchField.setText(""));
+
+    // Set double click listener.
+    listTable.setOnMouseClicked(
+        event -> {
+          if (event.getClickCount() == 2
+              && Objects.nonNull(listTable.getSelectionModel().getSelectedItem())) {
+            PostalCode selected = listTable.getSelectionModel().getSelectedItem();
+            searchField.setText(selected.getLocationName());
+          }
+        });
   }
 
   /**
