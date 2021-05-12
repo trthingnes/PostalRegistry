@@ -1,9 +1,9 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import edu.ntnu.tobiasth.idatt2001.postalregistry.App;
+import edu.ntnu.tobiasth.idatt2001.postalregistry.io.PostalNumberReader;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalCode;
 import edu.ntnu.tobiasth.idatt2001.postalregistry.model.PostalNumber;
-import edu.ntnu.tobiasth.idatt2001.postalregistry.io.PostalNumberReader;
 import java.net.URL;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
