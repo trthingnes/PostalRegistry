@@ -28,7 +28,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Text layoutX="16.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To search the postal code table, start typing into the search bar indicated in the illustration." textAlignment="JUSTIFY" wrappingWidth="184.5947265625">
+      <Text layoutX="16.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To search the postal code table, start typing into the search bar." textAlignment="JUSTIFY" wrappingWidth="184.5947265625">
          <font>
             <Font size="14.0" />
          </font>
