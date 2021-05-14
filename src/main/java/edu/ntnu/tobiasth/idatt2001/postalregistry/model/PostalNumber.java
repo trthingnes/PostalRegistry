@@ -109,10 +109,10 @@ public class PostalNumber implements PostalCode {
     return postalCode;
   }
 
-  /** Returns a readable string version of the postal code. */
+  /** {@inheritDoc} */
   @Override
   public String toString() {
-    return String.format("%s, %s, %s, %s", postalCode, postalName, provinceName, COUNTRY_NAME);
+    return String.format("%s %s%n%s%n%s", postalCode, postalName, provinceName, COUNTRY_NAME);
   }
 
   /** Postal code types. Shows what the postal codes are used for. */

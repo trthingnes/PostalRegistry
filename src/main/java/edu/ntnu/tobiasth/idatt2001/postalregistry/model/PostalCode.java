@@ -51,6 +51,13 @@ public interface PostalCode {
   String getTypeDescription();
 
   /**
+   * Gets the postal code as a print friendly string.
+   *
+   * @return Print friendly string.
+   */
+  String toString();
+
+  /**
    * Get whether or not two postal codes are equal.
    *
    * @param other Other postal code.
